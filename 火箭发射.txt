@@ -1,0 +1,145 @@
+local ScreenGui = Instance.new("ScreenGui")
+local Draggable = Instance.new("Frame")
+local Frame = Instance.new("Frame")
+local Frame_2 = Instance.new("Frame")
+local fashe = Instance.new("TextButton")
+local fashetai = Instance.new("TextButton")
+local fashewz1 = Instance.new("TextButton")
+local fashewz2 = Instance.new("TextButton")
+local Exit = Instance.new("TextButton")
+local textlable = Instance.new("TextLabel")
+
+ScreenGui.Parent = game:GetService("CoreGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
+
+Draggable.Parent = ScreenGui
+Draggable.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Draggable.BackgroundTransparency = 1.000
+Draggable.BorderSizePixel = 0
+Draggable.Position = UDim2.new(0.35026139, 0, 0.296158612, 0)
+Draggable.Size = UDim2.new(0, 438, 0, 277)
+
+Frame.Parent = Draggable
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BackgroundTransparency = 1.000
+Frame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(-0.00133678317, 0, -0.00348037481, 0)
+Frame.Size = UDim2.new(0, 438, 0, 277)
+
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Frame_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Frame_2.BorderSizePixel = 0
+Frame_2.Position = UDim2.new(-0.00133678142, 0, -0.0179207586, 0)
+Frame_2.Size = UDim2.new(0, 153, 0, 238)
+Frame_2.Active = true
+Frame_2.Draggable = true
+
+--功能1
+fashe.Parent = Frame_2
+fashe.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+fashe.BorderSizePixel = 0
+fashe.Position = UDim2.new(0.0159817357, 0, 0.142857149, 0)
+fashe.Size = UDim2.new(0, 150, 0, 33)
+fashe.Font = Enum.Font.SourceSans
+fashe.Text = "火箭启动"
+fashe.TextColor3 = Color3.fromRGB(255, 255, 255)
+fashe.TextSize = 30.000
+fashe.TextWrapped = true
+fashe.MouseButton1Click:Connect(
+    function()
+ fireclickdetector(game:GetService("Workspace").Structure["Launch Land"]["SPACESHIP!!"].Shuttle.IgnitionButton.ClickDetector)
+    fireclickdetector(game:GetService("Workspace").Structure["Launch Land"].RocketStand.ConsoleLower.ReleaseButtonLower.ClickDetector)
+    fireclickdetector(game:GetService("Workspace").Structure["Launch Land"].RocketStand.ConsoleUpper.ReleaseButtonUpper.ClickDetector)
+    fireclickdetector(game:GetService("Workspace").Structure["Launch Land"].LoadingTower.Console.ReleaseEntryBridge.ClickDetector)
+    end
+)
+--功能1
+
+--功能2
+fashetai.Parent = Frame_2
+fashetai.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+fashetai.BorderSizePixel = 0
+fashetai.Position = UDim2.new(0.0159817357, 0, 0.302857149, 0)
+fashetai.Size = UDim2.new(0, 150, 0, 33)
+fashetai.Font = Enum.Font.SourceSans
+fashetai.Text = "传送发射台"
+fashetai.TextColor3 = Color3.fromRGB(255, 255, 255)
+fashetai.TextSize = 30.000
+fashetai.TextWrapped = true
+fashetai.MouseButton1Click:Connect(
+    function()
+ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6, 144, -17)
+    end
+)
+--功能2
+
+--功能3
+fashewz1.Parent = Frame_2
+fashewz1.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+fashewz1.BorderSizePixel = 0
+fashewz1.Position = UDim2.new(0.0159817357, 0, 0.462857149, 0)
+fashewz1.Size = UDim2.new(0, 150, 0, 33)
+fashewz1.Font = Enum.Font.SourceSans
+fashewz1.Text = "传送火箭1"
+fashewz1.TextColor3 = Color3.fromRGB(255, 255, 255)
+fashewz1.TextSize = 30.000
+fashewz1.TextWrapped = true
+fashewz1.MouseButton1Click:Connect(
+    function()
+ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4.5, 120, 25.5)
+   end
+)
+--功能3
+
+--功能4
+fashewz2.Parent = Frame_2
+fashewz2.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+fashewz2.BorderSizePixel = 0
+fashewz2.Position = UDim2.new(0.0159817357, 0, 0.622857149, 0)
+fashewz2.Size = UDim2.new(0, 150, 0, 33)
+fashewz2.Font = Enum.Font.SourceSans
+fashewz2.Text = "传送火箭2"
+fashewz2.TextColor3 = Color3.fromRGB(255, 255, 255)
+fashewz2.TextSize = 30.000
+fashewz2.TextWrapped = true
+fashewz2.MouseButton1Click:Connect(
+    function()
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4.5, 120, 28.5)
+    end
+)
+--功能4
+
+--退出
+Exit.Parent = Frame_2
+Exit.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Exit.BorderSizePixel = 0
+Exit.Position = UDim2.new(0.0159817357, 0, 0.782857149, 0)
+Exit.Size = UDim2.new(0, 150, 0, 33)
+Exit.Font = Enum.Font.SourceSans
+Exit.Text = "退出"
+Exit.TextColor3 = Color3.fromRGB(255, 255, 255)
+Exit.TextSize = 30.000
+Exit.TextWrapped = true
+Exit.MouseButton1Click:Connect(
+    function()
+    ScreenGui:Destroy()
+    end
+)
+--退出
+
+--作者
+textlable.Parent = Frame_2
+textlable.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+textlable.BackgroundTransparency = 1.000
+textlable.Position = UDim2.new(0.0159817357, 0, 0.003857149, 0)
+textlable.Size = UDim2.new(0, 150, 0, 44)
+textlable.Font = Enum.Font.GothamSemibold
+textlable.Text = "God-X-ShenYue"
+textlable.TextColor3 = Color3.fromRGB(255, 255, 255)
+textlable.TextScaled = true
+textlable.TextSize = 14.000
+textlable.TextWrapped = true
+--作者
