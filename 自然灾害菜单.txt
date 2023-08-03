@@ -1,0 +1,307 @@
+game:GetService("StarterGui"):SetCore("SendNotification", { Title = "公告"; Text = "正在启动自然灾害菜单"; Icon = ""; Duration = 2; })
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/God-X-ShenYue/roblox/main/source.txt')))()
+local Window = OrionLib:MakeWindow({Name = "ShenYueNDS",HidePremium = true, IntroEnabled = false, IntroText = "ShenYueScriptMenu", SaveConfig = true, ConfigFolder = "ShenYueConfig"})
+local notification = Instance.new("Sound")
+notification.Parent = game:GetService("SoundService")
+notification.SoundId = "rbxassetid://9086208751"
+notification.Volume = 5
+notification:Play()
+OrionLib:MakeNotification({ Name = "Title", Content = "Startup successful", Image = "rbxassetid://14232437717", Time = 2})
+local zrzh = Window:MakeTab({
+	Name = "自然灾害菜单",
+	Icon = "rbxassetid://14232437717",
+	PremiumOnly = flase
+})
+
+--_G.yujing = true
+--function yujing()
+	--while _G.yujing do
+	--OrionLib:MakeNotification({ Name = "Title", Content = game.Players.LocalPlayer.Character.SurvivalTag.Value, Image = "rbxassetid://14232437717", Time = 2})
+	--wait(3)
+	--end
+--end
+
+--清除
+--_G.yujingg = true
+--function yujingg()
+	--while _G.yujingg do
+	--game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(game.Players.LocalPlayer.Character.SurvivalTag.Value, "All")
+	    --wait(5)
+	--end
+--end
+--清除
+
+--功能↓
+--自然灾害菜单功能
+zrzh:AddParagraph("提示","关于地图处")
+zrzh:AddToggle({
+	Name = "选择地图",
+	Default = false,
+	Callback = function(Value)
+    game.Players.LocalPlayer.PlayerGui.MainGui.MapVotePage.Visible = Value
+	end    
+})
+zrzh:AddButton({
+	Name = "接收灾害消息(游戏开始时点击)",
+	Callback =  function()
+ OrionLib:MakeNotification({ Name = "Title", Content = game.Players.LocalPlayer.Character.SurvivalTag.Value, Image = "rbxassetid://14232437717", Time = 2})
+   end
+})
+zrzh:AddButton({
+	Name = "发送灾害消息(游戏开始时点击)",
+	Callback =  function()
+   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(game.Players.LocalPlayer.Character.SurvivalTag.Value, "All")
+   end
+})
+zrzh:AddToggle({
+	Name = "固定岛",
+	Default = false,
+	Callback = function(Value)
+    for i, v in pairs (game.workspace:GetDescendants())do
+			if v.Name == 'LowerRocks' then 
+				v.CanCollide = Value
+			end
+		end
+	end    
+})
+zrzh:AddParagraph("提示","关于火箭处")
+zrzh:AddButton({
+	Name = "火箭内容悬浮窗版(原创)",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/God-X-ShenYue/roblox/main/%E7%81%AB%E7%AE%AD%E5%8F%91%E5%B0%84.txt'))()
+  	end    
+})
+zrzh:AddButton({
+	Name = "直接发动火箭",
+	Callback = function()
+    fireclickdetector(game:GetService("Workspace").Structure["Launch Land"]["SPACESHIP!!"].Shuttle.IgnitionButton.ClickDetector)
+    fireclickdetector(game:GetService("Workspace").Structure["Launch Land"].RocketStand.ConsoleLower.ReleaseButtonLower.ClickDetector)
+    fireclickdetector(game:GetService("Workspace").Structure["Launch Land"].RocketStand.ConsoleUpper.ReleaseButtonUpper.ClickDetector)
+    fireclickdetector(game:GetService("Workspace").Structure["Launch Land"].LoadingTower.Console.ReleaseEntryBridge.ClickDetector)
+  	end    
+})
+zrzh:AddButton({
+	Name = "火箭发射台位置",
+	Callback = function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6, 144, -17)
+  	end    
+})
+zrzh:AddButton({
+	Name = "火箭发射主位置1",
+	Callback = function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4.5, 120, 25.5)
+  	end    
+})
+zrzh:AddButton({
+	Name = "火箭发射主位置2",
+	Callback = function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4.5, 120, 28.5)
+  	end    
+})
+zrzh:AddParagraph("提示","关于人物处")
+zrzh:AddToggle({
+	Name = "水上行走",
+	Default = false,
+	Callback = function(bool)
+    		if bool == false then do game.Workspace.WaterLevel.CanCollide = false
+				game.Workspace.WaterLevel.Size = Vector3.new(10, 1, 10)
+			end
+		end
+		if bool == true then do game.Workspace.WaterLevel.CanCollide = true
+				game.Workspace.WaterLevel.Size = Vector3.new(1000, 1, 1000)
+			end
+		end
+	end    
+})
+zrzh:AddButton({
+	Name = "给个气球",
+	Callback = function()
+    local function createNotif(title,text,duration)
+	game.StarterGui:SetCore("SendNotification", {Title = title; Text = text;Duration = duration; })
+    end
+    if game.Workspace:FindFirstChild("GreenBalloon", true) then -- 检查是否可窃取气球
+	balloonClone = game.Workspace:FindFirstChild("GreenBalloon", true):Clone() -- 并克隆
+	balloonClone.Parent = game:GetService("Players").LocalPlayer.Backpack
+	createNotif("公告","获取成功","2")
+    else 
+	createNotif("公告","获取失败\n请再次点击获取尝试获取\n如果无法获取请重置人物再试\n如果以上都尝试了并无法获取就代表和谐","4")
+    end 
+  	end    
+})
+zrzh:AddButton({
+	Name = "灵魂出窍(点击可绑定其他玩家)",
+	Callback = function()
+	--488行结束
+--Made by rouxhaver
+--super janky
+player = game:GetService("Players").LocalPlayer
+mouse = player:GetMouse()
+camera = workspace.CurrentCamera
+ts = game:GetService("TweenService")
+function createtween(part, cframe,ttime)
+	local tweeninfo = TweenInfo.new(ttime)
+	tween = ts:Create(part, tweeninfo, {CFrame = cframe})
+	tween:Play()
+	tween.Completed:Wait()
+end
+outline = Instance.new("Highlight")
+target = nil
+mouse.Button1Up:Connect(function()
+	if mouse.Target then
+		local model = mouse.Target:FindFirstAncestorOfClass("Model")
+		if model and model:FindFirstChild("Humanoid") then do
+				camera.CameraSubject = model.Humanoid
+				target = model
+			end else
+			outline.Parent = nil
+		end
+	end
+end)
+game:GetService("RunService").RenderStepped:Connect(function()
+	if player.Character:FindFirstChild("HumanoidRootPart") then
+		player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+		if target and target:FindFirstChild("HumanoidRootPart") then
+			if target.HumanoidRootPart.CFrame.Y + 20 < player.Character.HumanoidRootPart.CFrame.Y then
+				tween:Cancel()
+			end
+		end
+	end
+	if mouse.Target then
+		local model = mouse.Target:FindFirstAncestorOfClass("Model")
+		if model and model:FindFirstChild("Humanoid") then do
+				outline.Parent = model
+			end else
+			outline.Parent = nil
+		end
+	end
+end)
+while task.wait() do
+	if target ~= nil and target:FindFirstAncestorOfClass("Workspace") and target ~= player.Character and player.Character:FindFirstChild("HumanoidRootPart") and target:FindFirstChild("HumanoidRootPart") then
+		character = player.Character
+		hrp = character.HumanoidRootPart
+		thrp = target.HumanoidRootPart
+		hrp.CFrame = thrp.CFrame * CFrame.Angles(math.rad(90),0,0) + thrp.CFrame.UpVector * -10
+	end
+	if target ~= nil and target:FindFirstAncestorOfClass("Workspace") and target ~= player.Character and player.Character:FindFirstChild("HumanoidRootPart") and target:FindFirstChild("HumanoidRootPart") then
+		character = player.Character
+		hrp = character.HumanoidRootPart
+		thrp = target.HumanoidRootPart
+		rot = thrp.CFrame*CFrame.Angles(math.rad(25),math.rad(25),math.rad(25))
+		createtween(hrp, thrp.CFrame * CFrame.Angles(math.rad(90),0,0) + thrp.CFrame.UpVector * 1000000, 100000)
+	end
+end
+  	end    
+})
+zrzh:AddParagraph("提示","关于传送处")
+zrzh:AddButton({
+	Name = "平台处",
+	Callback = function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-264, 196, 288)
+  	end    
+})
+zrzh:AddButton({
+	Name = "地图处",
+	Callback = function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-108, 49, 0)
+  	end    
+})
+zrzh:AddParagraph("提示","关于渲染处")
+zrzh:AddButton({
+	Name = "白天模式",
+	Callback = function()
+    game:GetService("Lighting").ClockTime = "14"
+	game.Workspace.WaterLevel.BrickColor = BrickColor.new("Bright blue")
+	game.Workspace.Structure.Cloud.BrickColor = BrickColor.new("Sand blue")
+	game.Workspace.Structure.FloodLevel.BrickColor = BrickColor.new("Bright blue")
+	local Children = game.Workspace.TsunamiWave:GetChildren()
+	for a = 1, #Children do
+	Children[a].BrickColor = BrickColor.new("Bright blue")
+	end
+	end    
+})
+zrzh:AddButton({
+	Name = "黑夜模式",
+	Callback = function()
+    game:GetService("Lighting").ClockTime = "4"
+	game.Workspace.WaterLevel.BrickColor = BrickColor.new("Black")
+	game.Workspace.Structure.Cloud.BrickColor = BrickColor.new("Black")
+	game.Workspace.Structure.FloodLevel.BrickColor = BrickColor.new("Black")
+	local Children = game.Workspace.TsunamiWave:GetChildren()
+	for a = 1, #Children do
+	Children[a].BrickColor = BrickColor.new("Black")
+	end
+	end    
+})
+zrzh:AddButton({
+	Name = "去除沙尘暴ui",
+	Callback = function()
+    game.Players.LocalPlayer.PlayerGui.SandStormGui:destroy()
+	end    
+})
+zrzh:AddButton({
+	Name = "去除暴风雪ui",
+	Callback = function()
+    game.Players.LocalPlayer.PlayerGui.BlizzardGui:destroy()
+	end    
+})
+zrzh:AddButton({
+	Name = "去除广告",
+	Default = false,
+	Callback = function()
+    game:GetService("Workspace").ShopSign:Destroy()
+    game:GetService("Workspace").Rack:Destroy()
+	end    
+})
+zrzh:AddButton({
+	Name = "去除雾",
+	Callback = function()
+    game:GetService("Lighting").FogEnd = 5000
+	game:GetService("Lighting").FogStart = 500
+	end    
+})
+zrzh:AddParagraph("提示","其他脚本处")
+zrzh:AddButton({
+	Name = "自然灾害它人脚本",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/9NLK7/93qjoadnlaknwldk/main/main'))()
+  	end    
+})
+zrzh:AddButton({
+	Name = "自然灾害它人脚本2",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/LiverMods/Rawnder-NTDR/main/NaturalDisaster'))()
+  	end    
+})
+zrzh:AddButton({
+	Name = "自然灾害它人脚本3",
+	Callback = function()
+    loadstring(game:HttpGet(('https://pastebin.com/raw/y2yFfXw3'),true))()
+  	end    
+})
+zrzh:AddButton({
+	Name = "自然灾害它人脚本4",
+	Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxHackingProject/HPHub/main/HPHub.lua"))()
+  	end    
+})
+zrzh:AddButton({
+	Name = "自然灾害它人脚本5",
+	Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/sxnsiferous/projectomega/main/ProjectOmega.lua"))()
+  	end    
+})
+zrzh:AddButton({
+	Name = "自然灾害它人脚本6",
+	Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringUjHI6RQpz2o8", true))()
+  	end    
+})
+zrzh:AddButton({
+	Name = "自然灾害它人脚本7",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
+  	end    
+})
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/ObviouslyOrchi/Moonlight_Client.lua/main/Universal",true))()
+--自然灾害菜单功能
+OrionLib:Init()

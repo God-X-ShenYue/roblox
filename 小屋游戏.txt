@@ -1,0 +1,44 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/God-X-ShenYue/roblox/main/source.txt')))()
+local Window = OrionLib:MakeWindow({Name = "SY",HidePremium = true, IntroEnabled = false, IntroText = "ShenYueScriptMenu", SaveConfig = false, ConfigFolder = "ShenYueConfig"})
+
+_G.AFK = true
+function AFK()
+     while _G.AFK == true do
+   game:GetService("ReplicatedStorage").CharacterRemotes.AFKRemote:FireServer(true)
+   wait(.1)
+   game:GetService("ReplicatedStorage").CharacterRemotes.AFKRemote:FireServer(false)
+   wait(.1)
+    end
+   end
+_G.AFKY = true
+function AFKY()
+     while _G.AFKY == true do
+   game:GetService("ReplicatedStorage").CharacterRemotes.HideNameRemote:FireServer(true)
+   wait(.1)
+   game:GetService("ReplicatedStorage").CharacterRemotes.HideNameRemote:FireServer(false)
+   wait(.1)
+    end
+   end
+   
+local zcd = Window:MakeTab({
+	Name = "菜单",
+	Icon = "rbxassetid://14232437717",
+	PremiumOnly = flase
+})
+zcd:AddToggle({
+	Name = "装逼挂机",
+	Default = false,
+	Callback = function(Value)
+    _G.AFK = Value
+    AFK()
+	end    
+})
+zcd:AddToggle({
+	Name = "装逼隐藏名字",
+	Default = false,
+	Callback = function(Value)
+    _G.AFKY = Value
+    AFKY()
+	end    
+})
+OrionLib:Init()
