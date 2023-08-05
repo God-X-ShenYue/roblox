@@ -1,0 +1,49 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/God-X-ShenYue/roblox/main/source.txt')))()
+local Window = OrionLib:MakeWindow({Name = "神月制作",HidePremium = true, IntroEnabled = false, IntroText = "ShenYueScriptMenu", SaveConfig = false, ConfigFolder = "ShenYueConfig"})
+
+_G.ShenYue = true
+_G.ShenYuestring = Value
+_G.ShenYuespeed = Value
+function ShenYue()
+   while _G.ShenYue == true do
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(_G.ShenYuestring, "All")
+    wait(_G.ShenYuespeed)
+   end
+end
+local zcd = Window:MakeTab({
+	Name = "MENU",
+	Icon = "rbxassetid://14232437717",
+	PremiumOnly = flase
+})
+zcd:AddParagraph("请设置后开启，bilibili:God-X-ShenYue","")
+zcd:AddTextbox({
+	Name = "发送文本",
+	Default = "Test",
+	TextDisappear = true,
+	Callback = function(Valuetext)
+	_G.ShenYuestring = Valuetext
+	end	  
+})
+zcd:AddTextbox({
+	Name = "发送速度",
+	Default = "2",
+	TextDisappear = true,
+	Callback = function(Valuespeed)
+	_G.ShenYuespeed = Valuespeed
+	end	  
+})
+zcd:AddToggle({
+	Name = "开启自动发消息",
+	Default = false,
+	Callback = function(Value)
+    _G.ShenYue = Value
+    ShenYue()
+	end    
+})
+zcd:AddButton({
+	Name = "手动点发送消息",
+	Callback =  function()
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(_G.ShenYuestring, "All")
+    end
+})
+OrionLib:Init()
