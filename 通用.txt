@@ -1,0 +1,168 @@
+
+
+--[[
+  _____              _                 __   __                  _____  _                   __     __
+ / ____|             | |                \ \ / /                 / ____|  | |                  \ \   / /
+| |   __    ___    __| |     ______      \ V /      ______     | (___    | |__    ___  _ _     \ \_/ /  _  _   ___
+| |  |_ |   / _ \  / _  |    |______|       ><       |______|     \___ \   | '_ \  / _ \ | '_ \     \  /   | | | | / _ \
+| |__|  |  |  (_) | | (_| |                 / . \                  ____) |   | | | | |  __/ | | | |     | |    | |_| | |  __/
+\__ ___|   \___/  \__,_|                /_/ \_\                 |_____/    |_| |_| \___|  |_| |_|    |_|    \__,_| \___|
+]]--
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/God-X-ShenYue/roblox/main/source.txt')))()
+_G.GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+local Window = OrionLib:MakeWindow({Name = "ShenYueHub | ".._G.GameName ,HidePremium = true, IntroEnabled = true, IntroText = "ShenYueScriptMenu", SaveConfig = false, ConfigFolder = "ShenYueConfig"})
+--为启动ui显示↑
+--以下为功能↓
+--Value
+_G.PlaceId = game.PlaceId
+_G.Lighting = game:GetService("Lighting")
+_G.day = true
+_G.night = true
+_G.nofog = true
+_G.transparent = true
+--Value
+--function脚本功能
+function day(args, speaker)
+	while _G.day == true do
+	_G.Lighting.Brightness = 2
+	_G.Lighting.ClockTime = 12
+	_G.Lighting.FogEnd = 100000
+	_G.Lighting.GlobalShadows = false
+	_G.Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+    wait(2.8)
+    end
+end
+function night(args, speaker)
+	while _G.night == true do
+	_G.Lighting.Brightness = 2
+	_G.Lighting.ClockTime = 0
+	_G.Lighting.FogEnd = 100000
+	_G.Lighting.GlobalShadows = false
+	_G.Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+	wait(2.8)
+    end
+end
+function nofog(args, speaker)
+	while _G.nofog == true do
+	_G.Lighting.FogEnd = 100000
+	for i,v in pairs(_G.Lighting:GetDescendants()) do
+		if v:IsA("Atmosphere") then
+			v:Destroy()
+		end
+	end
+	wait(2.8)
+    end
+end
+function x()
+	if _G.transparent then
+		for _,i in pairs(workspace:GetDescendants()) do
+			if i:IsA("BasePart") and not i.Parent:FindFirstChildOfClass('Humanoid') and not i.Parent.Parent:FindFirstChildOfClass('Humanoid') then
+				i.LocalTransparencyModifier = 0.5
+			end
+		end
+	else
+		for _,i in pairs(workspace:GetDescendants()) do
+			if i:IsA("BasePart") and not i.Parent:FindFirstChildOfClass('Humanoid') and not i.Parent.Parent:FindFirstChildOfClass('Humanoid') then
+				i.LocalTransparencyModifier = 0
+			end
+		end
+	end
+end
+--function脚本功能
+
+--菜单
+local gameinfo = Window:MakeTab({
+	Name = "游戏通用菜单",
+	Icon = "rbxassetid://14232437717",
+	PremiumOnly = false
+})
+--菜单
+
+--游戏信息
+gameinfo:AddParagraph("游戏ID: ".._G.PlaceId.. " 名字: ".. _G.GameName, "")
+gameinfo:AddButton({
+	Name =  "复制ID",
+	Callback = function()
+      	toclipboard(""..game.PlaceId)
+  	end
+})
+gameinfo:AddToggle({
+	Name = "循环白天模式",
+	Default = false,
+	Callback = function(Value)
+	_G.day = Value
+	day()
+    end
+})
+gameinfo:AddToggle({
+	Name = "循环黑天模式",
+	Default = false,
+	Callback = function(Value)
+	_G.night = Value
+	night()
+    end
+})
+gameinfo:AddToggle({
+	Name = "循环去除云雾",
+	Default = false,
+	Callback = function(Value)
+	_G.nofog = Value
+	nofog()
+    end
+})
+gameinfo:AddTextbox({
+	Name = "视野距离",
+	Default = "110",
+	TextDisappear = true,
+	Callback = function(Value)
+		workspace.CurrentCamera.FieldOfView = Value
+	end	  
+})
+gameinfo:AddTextbox({
+	Name = "速度",
+	Default = "50",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end	  
+})
+gameinfo:AddTextbox({
+	Name = "跳跃",
+	Default = "50",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end	  
+})
+gameinfo:AddTextbox({
+	Name = "重力",
+	Default = "50",
+	TextDisappear = true,
+	Callback = function(Value)
+		workspace.Gravity = Value
+	end	  
+})
+gameinfo:AddTextbox({
+	Name = "锁定高度",
+	Default = "50",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.HipHeight = Value
+	end	  
+})
+gameinfo:AddToggle({
+	Name = "透视",
+	Default = false,
+	Callback = function(Value)
+	_G.transparent = Value
+	x()
+    end
+})
+gameinfo:AddButton({
+	Name = "绘制菜单",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/God-X-ShenYue/roblox/main/esp.txt"))()
+    end
+})
+--游戏信息
+OrionLib:Init() --结束必须函数
