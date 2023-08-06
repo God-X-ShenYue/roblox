@@ -19,6 +19,17 @@ function AFKY()
    wait(.1)
     end
    end
+_G.AFKYM = true
+function AFKYM()
+     while _G.AFKYM == true do
+     game:GetService("ReplicatedStorage").CharacterRemotes.RoleplayNameRemote:InvokeServer("ShenYue")
+     wait(1)
+     game:GetService("ReplicatedStorage").CharacterRemotes.RoleplayNameRemote:InvokeServer("Android")
+     wait(1)
+     game:GetService("ReplicatedStorage").CharacterRemotes.RoleplayNameRemote:InvokeServer("Hacker")
+     wait(1)
+    end
+   end
    
 local zcd = Window:MakeTab({
 	Name = "菜单",
@@ -40,5 +51,31 @@ zcd:AddToggle({
     _G.AFKY = Value
     AFKY()
 	end    
+})
+zcd:AddToggle({
+	Name = "装逼自动名字",
+	Default = false,
+	Callback = function(Value)
+    _G.AFKYM = Value
+    AFKYM()
+	end    
+})
+zcd:AddButton({
+	Name = "转转转",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/God-X-ShenYue/roblox/main/%E6%97%8B%E8%BD%AC%E6%89%8B%E6%9F%84.txt'))()
+  	end    
+})
+zcd:AddButton({
+	Name = "转转转(可自调)",
+	Callback = function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
+  	end    
+})
+zcd:AddButton({
+	Name = "飞行脚本",
+	Callback = function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
+  	end    
 })
 OrionLib:Init()
