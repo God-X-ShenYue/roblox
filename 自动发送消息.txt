@@ -10,13 +10,13 @@ function ShenYue()
     wait(_G.ShenYuespeed)
    end
 end
-local zcd = Window:MakeTab({
+local zidongxx = Window:MakeTab({
 	Name = "MENU",
 	Icon = "rbxassetid://14232437717",
 	PremiumOnly = flase
 })
-zcd:AddParagraph("请设置后开启，bilibili:God-X-ShenYue","")
-zcd:AddTextbox({
+zidongxx:AddParagraph("请设置后开启，bilibili:God-X-ShenYue","")
+zidongxx:AddTextbox({
 	Name = "发送文本",
 	Default = "Test",
 	TextDisappear = true,
@@ -24,7 +24,7 @@ zcd:AddTextbox({
 	_G.ShenYuestring = Valuetext
 	end	  
 })
-zcd:AddTextbox({
+zidongxx:AddTextbox({
 	Name = "发送速度",
 	Default = "2",
 	TextDisappear = true,
@@ -32,7 +32,7 @@ zcd:AddTextbox({
 	_G.ShenYuespeed = Valuespeed
 	end	  
 })
-zcd:AddToggle({
+zidongxx:AddToggle({
 	Name = "开启自动发消息",
 	Default = false,
 	Callback = function(Value)
@@ -40,7 +40,7 @@ zcd:AddToggle({
     ShenYue()
 	end    
 })
-zcd:AddButton({
+zidongxx:AddButton({
 	Name = "手动点发送消息",
 	Callback =  function()
     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(_G.ShenYuestring, "All")
