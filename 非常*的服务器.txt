@@ -1,0 +1,111 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/God-X-ShenYue/roblox/main/source.txt')))()
+local Window = OrionLib:MakeWindow({Name = "神月制作",HidePremium = true, IntroEnabled = false, IntroText = "ShenYueScriptMenu", SaveConfig = false, ConfigFolder = "ShenYueConfig"})
+--Value
+_G.ShenYuefa = true
+_G.ShenYuemode = Value
+_G.ShenYuestring =Value
+_G.ShenYuespeed =Value
+--function
+function ShenYuefa()
+   while _G.ShenYuefa == true do
+    game:GetService("ReplicatedStorage").ChatEvents.SendMessage:InvokeServer({["Message"] = "".._G.ShenYuestring ,["Channel"] = "Server",["ChatType"] = "Match",["lastPlayerIsTheSame"] = _G.ShenYuemode,["messageChannel"] = game:GetService("Players").LocalPlayer.PlayerGui.EchoChat.UI.Channels.Server})
+    wait(_G.ShenYuespeed)
+   end
+end
+
+local putong = Window:MakeTab({
+	Name = "主菜单",
+	Icon = "rbxassetid://14232437717",
+	PremiumOnly = flase
+})
+local SAY = Window:MakeTab({
+	Name = "消息菜单",
+	Icon = "rbxassetid://14232437717",
+	PremiumOnly = flase
+})
+putong:AddParagraph("炫技必须↓","")
+putong:AddButton({
+	Name = "舞蹈",
+	Callback = function(args, speaker)
+    if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+       spawn(function()
+       local speaker = game.Players.LocalPlayer
+       local Anim = Instance.new("Animation")
+       Anim.AnimationId = "rbxassetid://27789359"
+       local bruh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+       bruh:Play(0)
+       bruh:AdjustSpeed(1)
+       speaker.Character.Animate.Disabled = false
+       end)
+    end
+  end   
+})
+putong:AddButton({
+	Name = "转转转fling可自调",
+	Callback = function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
+  	end    
+})
+putong:AddButton({
+	Name = "飞行(可显示动作)",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/alnbta/script/main/%E6%B1%BD%E8%BD%A6%E9%A3%9E%E7%BF%94.txt'))()
+  	end    
+})
+putong:AddButton({
+	Name = "最NB的SPY(可直接偷看)",
+	Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MichaelScripter/MiniScript/main/Spy gui.lua"))()
+  	end    
+})
+putong:AddParagraph("正常使用必须↓","")
+putong:AddButton({
+	Name = "飞行(可抄家)",
+	Callback = function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
+  	end    
+})
+
+
+SAY:AddParagraph("别人可见，自己不可见","")
+SAY:AddTextbox({
+	Name = "发送文本",
+	Default = "Test",
+	TextDisappear = true,
+	Callback = function(Valuetext)
+	_G.ShenYuestring = Valuetext
+	end	  
+})
+SAY:AddTextbox({
+	Name = "发送速度",
+	Default = "2",
+	TextDisappear = true,
+	Callback = function(Valuespeed)
+	_G.ShenYuespeed = Valuespeed
+	end	  
+})
+SAY:AddToggle({
+	Name = "消息是否合鬓模式",
+	Default = false,
+	Callback = function(Value)
+    _G.ShenYuemode = Value
+	end    
+})
+SAY:AddToggle({
+	Name = "开启自动发消息",
+	Default = false,
+	Callback = function(Value)
+    _G.ShenYuefa = Value
+    ShenYuefa()
+	end    
+})
+SAY:AddButton({
+	Name = "手动点击发消息",
+	Callback = function()
+    game:GetService("ReplicatedStorage").ChatEvents.SendMessage:InvokeServer({["Message"] = "".._G.ShenYuestring ,["Channel"] = "Server",["ChatType"] = "Match",["lastPlayerIsTheSame"] = _G.ShenYuemode,["messageChannel"] = game:GetService("Players").LocalPlayer.PlayerGui.EchoChat.UI.Channels.Server})
+  	end    
+})
+OrionLib:Init()
+
+
+
