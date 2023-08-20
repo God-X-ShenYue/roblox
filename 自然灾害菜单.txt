@@ -20,7 +20,6 @@ local zrzh = Window:MakeTab({
 	--wait(3)
 	--end
 --end
-
 --清除
 --_G.yujingg = true
 --function yujingg()
@@ -30,6 +29,20 @@ local zrzh = Window:MakeTab({
 	--end
 --end
 --清除
+
+_G.bofangsound = true
+function bofangsound()
+   while _G.bofangsound == true do
+     for _, sound in next, workspace:GetDescendants() do
+       if sound:IsA("Sound") then
+       sound:Play()
+       end
+     end
+     wait(0.0000000000000000000000001)
+   end
+end
+
+
 
 --功能↓
 --自然灾害菜单功能
@@ -52,6 +65,14 @@ zrzh:AddButton({
 	Callback =  function()
    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(game.Players.LocalPlayer.Character.SurvivalTag.Value, "All")
    end
+})
+zrzh:AddToggle({
+	Name = "播放骚扰声音",
+	Default = false,
+	Callback = function(Value)
+    _G.bofangsound = Value
+    bofangsound()
+	end    
 })
 zrzh:AddToggle({
 	Name = "固定岛",
