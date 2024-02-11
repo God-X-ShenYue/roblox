@@ -465,10 +465,17 @@ function lib:AddButton(name, funct, ...)
 end
 
 function lib:AddAction(name)
-    local action = Instance.new("BindableEvent")
-    action.Name = name
-    action.Parent = self
-    return action
+    local action = Action:Clone()
+    action:WaitForChild("Name").Text = name
+	action.Size = UDim2.new(0.95, 0, 0, element_height)
+	action.Name = name
+	action.Parent = Menu
+	action.LayoutOrder = elements
+	action.Visible = true
+	elements += 1
+	AddSpace(Menu)
+	
+	return action
 end
 
 
