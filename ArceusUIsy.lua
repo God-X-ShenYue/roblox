@@ -2,6 +2,7 @@ local lib = {}
 
 local Script_Title = "Arceus X <font color=\"rgb(255, 0, 0)\">|</font> Ui Lib"
 
+
 -- Instances:
 local Arceus = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
@@ -36,7 +37,6 @@ local UIGradient_3 = Instance.new("UIGradient")
 local Img = Instance.new("TextLabel")
 local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
 local ComboBox = Instance.new("ImageButton")
-local Action = Instance.new("TextLabel")
 local UICorner_8 = Instance.new("UICorner")
 local Name_4 = Instance.new("TextLabel")
 local UIGradient_4 = Instance.new("UIGradient")
@@ -280,13 +280,6 @@ ComboBox.Size = UDim2.new(0.95, 0, 0, 50)
 UICorner_8.CornerRadius = UDim.new(0.25, 0)
 UICorner_8.Parent = ComboBox
 
-Action.Name = "Action"
-Action.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
-Action.Size = UDim2.new(0.95, 0, 0, 50)
-
-UICorner_9.CornerRadius = UDim.new(0.25, 0)
-UICorner_9.Parent = Action
-
 Name_4.Name = "Name"
 Name_4.Parent = ComboBox
 Name_4.AnchorPoint = Vector2.new(0, 0.5)
@@ -451,6 +444,27 @@ function lib:AddToggle(name, funct, enabled, ...)
 	return newTog
 end
 
+function lib:AddAction(name)
+    local newAction = Action:Clone() -- 创建一个名为Action的新实例，克隆它
+
+    newAction.MouseButton1Click:Connect(function()
+        -- 在这里执行动作的点击事件
+    end)
+
+    newAction:WaitForChild("Name").Text = name
+    newAction.Size = UDim2.new(0.95, 0, 0, element_height)
+    newAction.Name = name
+    newAction.Parent = Menu -- 设置父级为菜单
+    newAction.LayoutOrder = elements
+    newAction.Visible = true
+
+    elements += 1
+    AddSpace(Menu)
+
+    return newAction
+end
+
+
 function lib:AddButton(name, funct, ...)
 	local newBut = Button:Clone()
 	local args = {...}
@@ -471,23 +485,6 @@ function lib:AddButton(name, funct, ...)
 
 	return newBut
 end
-
-function lib:AddAction(name)
-    local action = Action:Clone()
-    action:WaitForChild("Name").Text = name
-	action.Size = UDim2.new(0.95, 0, 0, element_height)
-	action.Name = name
-	action.Parent = Menu
-	action.LayoutOrder = elements
-	action.Visible = true
-	elements += 1
-	AddSpace(Menu)
-	
-	return action
-end
-
-
-
 
 function lib:AddComboBox(text, options, funct, ...) -- ADD CUSTOM ELEMENT INSTEAD
 	local newCombo = ComboBox:Clone()
