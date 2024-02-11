@@ -36,6 +36,7 @@ local UIGradient_3 = Instance.new("UIGradient")
 local Img = Instance.new("TextLabel")
 local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
 local ComboBox = Instance.new("ImageButton")
+local Action = Instance.new("TextLabel")
 local UICorner_8 = Instance.new("UICorner")
 local Name_4 = Instance.new("TextLabel")
 local UIGradient_4 = Instance.new("UIGradient")
@@ -278,6 +279,13 @@ ComboBox.Size = UDim2.new(0.95, 0, 0, 50)
 
 UICorner_8.CornerRadius = UDim.new(0.25, 0)
 UICorner_8.Parent = ComboBox
+
+Action.Name = "Action"
+Action.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
+Action.Size = UDim2.new(0.95, 0, 0, 50)
+
+UICorner_9.CornerRadius = UDim.new(0.25, 0)
+UICorner_9.Parent = Action
 
 Name_4.Name = "Name"
 Name_4.Parent = ComboBox
